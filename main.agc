@@ -30,6 +30,11 @@ SetSpriteSize(99, GetVirtualWidth(), GetVirtualHeight())
 
 CreateSprite(1, 1) //Red Box
 SetSpriteSize(1, 50, 50) // Set size
+redBoxX = 0
+redBoxY = 0
+redBoxSPD = 5
+redBoxDirX = 1
+redboxDirY = 1
 
 CreateSprite(2, 3) //Blue Box
 SetSpriteSize(2, 100, 100) // size of blue box
@@ -65,8 +70,26 @@ do
 	if blueBoxY < 0 
 		blueBoxY = 0
 	endif
+	
 	SetSpritePosition(2, blueBoxX, blueBoxY)
+	// Make the red box move
+	redBoxX = redBoxX + redBoxDirX * 5
+	redBoxY = redBoxY + redBoxDirY * 5
+	// make red box stay within the screen (x axis)
+	if redBoxX > GetVirtualWidth() - GetSpriteWidth(1)
+		redBoxDirX = - 1
+	endif
+	if redBoxX < 0 
+		redBoxDirX = 1
+	endif
+	// make red box stay within screen (y axis)
+	if redBoxY > GetVirtualHeight() - GetSpriteHeight(1)
+		redBoxDirY = - 1
+	endif
+	if redBoxY < 0 
+		redBoxDirY = 1
+	endif
 
-    
+    SetSpritePosition(1, redBoxX, redBoxY)
     Sync()
 loop
