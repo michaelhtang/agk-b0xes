@@ -18,6 +18,9 @@ SetSyncRate( 30, 0 ) // 30fps instead of 60 to save battery
 SetScissor( 0,0,0,0 ) // use the maximum available screen space, no black borders
 UseNewDefaultFonts( 1 ) // since version 2.0.22 we can use nicer default fonts
 
+//Variables
+score = 0
+
 // Create Colors
 CreateImageColor(1, 255, 0, 0, 255) // RED
 CreateImageColor(2, 0, 255, 0, 255) //GREEN
@@ -89,7 +92,22 @@ do
 	if redBoxY < 0 
 		redBoxDirY = 1
 	endif
+	
+	// Collision
+	// Test if there is a collision
+	if GetSpriteCollision(1 , 2)
+		//Print("HIT!")
+		//Reset the positions
+		redBoxX = 0
+		redBoxY = 0
+		blueBoxX = GetVirtualWidth()/2 - GetSpriteWidth(2)/2
+		blueBoxY = GetVirtualHeight()/2 - GetSpriteHeight(2)/2
+		score = score + 1
+	endif
 
     SetSpritePosition(1, redBoxX, redBoxY)
+    
+    Printc("Score: ")
+    Print(score)
     Sync()
 loop
