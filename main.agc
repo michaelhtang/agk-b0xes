@@ -33,11 +33,12 @@ SetSpriteSize(99, GetVirtualWidth(), GetVirtualHeight())
 
 CreateSprite(1, 1) //Red Box
 SetSpriteSize(1, 50, 50) // Set size
-redBoxX = 0
-redBoxY = 0
+redBoxX = Random(0, GetVirtualWidth() - GetSpriteWidth(1))
+redBoxY = Random(0, GetVirtualHeight() - GetSpriteHeight(1))
 redBoxSPD = 5
 redBoxDirX = 1
 redboxDirY = 1
+SetSpritePosition(1, redBoxX, redBoxY)
 
 CreateSprite(2, 3) //Blue Box
 SetSpriteSize(2, 100, 100) // size of blue box
@@ -98,8 +99,8 @@ do
 	if GetSpriteCollision(1 , 2)
 		//Print("HIT!")
 		//Reset the positions
-		redBoxX = 0
-		redBoxY = 0
+		redBoxX = Random(0, GetVirtualWidth() - GetSpriteWidth(1))
+		redBoxY = Random(0, GetVirtualHeight() - GetSpriteHeight(1))
 		blueBoxX = GetVirtualWidth()/2 - GetSpriteWidth(2)/2
 		blueBoxY = GetVirtualHeight()/2 - GetSpriteHeight(2)/2
 		score = score + 1
